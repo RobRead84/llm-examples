@@ -9,6 +9,26 @@ with st.sidebar:
 
 st.title("💬 Firehills Eco system agent")
 st.caption("🚀 A Streamlit chatbot powered by Firehills")
+from langflow.load import run_flow_from_json
+TWEAKS = {
+  "ChatInput-M6iQR": {},
+  "Prompt-LF2aH": {},
+  "SplitText-tupJH": {},
+  "ChatOutput-GEz6P": {},
+  "OpenAIEmbeddings-4iBwL": {},
+  "File-u2CTZ": {},
+  "OpenAIModel-uYwgQ": {},
+  "AstraDB-s4pvI": {},
+  "AstraDB-TGYg1": {},
+  "parser-sfG9k": {}
+}
+
+result = run_flow_from_json(flow="Firehills Eco System Agent.json",
+                            input_value="message",
+                            session_id="", # provide a session id if you want to use session state
+                            fallback_to_env_vars=True, # False by default
+                            tweaks=TWEAKS)
+
 if "messages" not in st.session_state:
     st.session_state["messages"] = [{"role": "assistant", "content": "Type in the name of the organisation you would like to map?"}]
 
